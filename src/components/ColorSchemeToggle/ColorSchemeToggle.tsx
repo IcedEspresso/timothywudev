@@ -19,7 +19,8 @@ export function ColorSchemeToggle() {
       }}
     >
       {/*Rewrite to contain both Icons, and implement switching by means of CSS*/}
-      {state ? <IconMoon /> : <IconSun />}
+      <IconMoon />
+      {/* {state ? <IconMoon /> : <IconSun />} */}
     </ActionIcon>
   )
 }

@@ -6,3 +6,8 @@
 .belowHeader {
   margin-top: 80px;
 }
+
+/* Utility Classes */
+.textUppercase {
+  text-transform: uppercase;
+}

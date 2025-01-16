@@ -1,0 +1,24 @@
+.unstyledButtonIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Carousel */
+.carouselControls {
+  transition: opacity 150ms ease;
+  opacity: 0;
+}
+
+.carouselControl {
+  background-color: light-dark(var(--mantine-color-dark-6), var(--mantine-color-dark-6));
+  color: white;
+}
+
+.carouselRoot {
+  &:hover {
+    .carouselControls {
+      opacity: 1;
+    }
+  }
+}

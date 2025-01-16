@@ -104,7 +104,8 @@ export interface Media {
 export interface Project {
   id: number;
   title: string;
-  image?: (number | null) | Media;
+  date: string;
+  image?: (number | Media)[] | null;
   url?: string | null;
   tags?:
     | (
@@ -121,6 +122,8 @@ export interface Project {
         | 'threejs'
         | 'nextjs'
         | 'email'
+        | 'cad'
+        | 'modeling'
       )[]
     | null;
   isFeatured?: boolean | null;
@@ -227,6 +230,7 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface ProjectsSelect<T extends boolean = true> {
   title?: T;
+  date?: T;
   image?: T;
   url?: T;
   tags?: T;

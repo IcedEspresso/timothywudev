@@ -1,10 +1,14 @@
 import type { CollectionConfig } from 'payload'
 
 export const Projects: CollectionConfig = {
+  access: {
+    read: () => true,
+  },
   slug: 'projects',
   admin: {
     useAsTitle: 'title',
     description: 'this is a description',
+    defaultColumns: ['title', 'date', 'url', 'tags', 'createdAt', 'updatedAt'],
   },
   fields: [
     {
@@ -14,10 +18,17 @@ export const Projects: CollectionConfig = {
       required: true,
     },
     {
+      name: 'date',
+      type: 'date',
+      label: 'Project Date',
+      required: true,
+    },
+    {
       name: 'image',
       type: 'upload',
       label: 'Project Image',
       relationTo: 'media',
+      hasMany: true,
     },
     {
       name: 'url',

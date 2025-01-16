@@ -22,7 +22,7 @@
   font-weight: 600;
 
   &:hover {
-    color: var(--mantine-color-red-9);
+    color: light-dark(var(--mantine-color-teal-9), var(--mantine-color-teal-3));
   }
 }
 
