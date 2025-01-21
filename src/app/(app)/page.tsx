@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Key } from 'react'
 import NextImage from 'next/image'
 import {
   Container,
@@ -20,30 +20,16 @@ import {
 import { Carousel } from '@mantine/carousel'
 import globalClass from './Global.module.css'
 import classes from './Home.module.css'
-
 import { stringify } from 'qs-esm'
 import type { Where } from 'payload'
 import { IconBrandLinkedin } from '@tabler/icons-react'
+import { Media, Project } from '@payload-types'
+import PrimaryForm from '@components/ContactForm/PrimaryForm'
 
 const query: Where = {
   isFeatured: {
     equals: true,
   },
-}
-
-interface Project {
-  date: string
-  url: string
-  title: string
-  image: Image[]
-  tags: string[]
-  id: number
-  name: string
-}
-
-interface Image {
-  id: number
-  url: unknown
 }
 
 export default function Page() {
@@ -107,9 +93,12 @@ export default function Page() {
                 <Group justify="space-between" align="flex-end">
                   <Stack gap={'0'}>
                     <Title order={3}>{project.title}</Title>
-                    <Anchor href={project.url} target="_blank">
-                      {project.url}
-                    </Anchor>
+
+                    {project.url && (
+                      <Anchor href={project.url} target="_blank">
+                        {project.url}
+                      </Anchor>
+                    )}
                   </Stack>
                   <Stack ta={'right'} gap={0}>
                     <Text className={globalClass.textUppercase} lh={1}>
@@ -136,7 +125,7 @@ export default function Page() {
                   loop
                   withControls={true}
                 >
-                  {project.image.map((image, index) => (
+                  {(project.image as Media[])?.map((image: Media, index: number) => (
                     <Carousel.Slide key={image.id}>
                       <Image
                         component={NextImage}
@@ -151,7 +140,7 @@ export default function Page() {
                 </Carousel>
                 {/* Project Tags */}
                 <Group>
-                  {project.tags.map((tag: string) => (
+                  {project.tags?.map((tag: string) => (
                     <Code className={classes.projectTag} key={tag}>
                       {tag}
                     </Code>
@@ -162,6 +151,19 @@ export default function Page() {
           })}
         </Box>
       </Container>
+      <Container className={globalClass.section}>
+        <Grid>
+          <Grid.Col span={6}>
+            <Box>
+              <Title>Contact Me</Title>
+            </Box>
+          </Grid.Col>
+          <Grid.Col span={6}>
+            <PrimaryForm />
+          </Grid.Col>
+        </Grid>
+      </Container>
+      {/* <ContactForm /> */}
     </>
   )
 }
