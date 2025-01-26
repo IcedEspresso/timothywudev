@@ -1,7 +1,7 @@
 'use client'
 
 import { IconChevronDown } from '@tabler/icons-react'
-import { Burger, Center, Container, Group, Menu, Title } from '@mantine/core'
+import { Burger, Center, Container, Group, Menu, Title, Text, Stack } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import classes from './Header.module.css'
 import { ColorSchemeToggle } from '@components/ColorSchemeToggle/ColorSchemeToggle'
@@ -61,7 +61,11 @@ export function Header() {
     <header className={classes.header}>
       <Container size="md">
         <div className={classes.inner}>
-          <Title order={3}>timothywu.dev</Title>
+          <Stack gap={0}>
+            <Title order={3}>Timothy Wu</Title>
+            <Text>Front-End Developer</Text>
+          </Stack>
+
           <Group gap={5} visibleFrom="sm">
             {items}
             <div className={classes.colorSchemeToggle}>

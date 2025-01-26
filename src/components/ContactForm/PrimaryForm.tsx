@@ -1,6 +1,6 @@
 import { useForm } from '@mantine/form'
 import { Button, Group, Stack, Textarea, TextInput } from '@mantine/core'
-import { FormSubmission } from '@/payload-types'
+import classes from './ContactForm.module.css'
 
 export default function ContactForm() {
   const form = useForm({
@@ -40,10 +40,11 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
-      <Stack>
-        <TextInput label="Name" placeholder="Your name" {...form.getInputProps('name')} required />
+      <Stack gap={'sm'}>
+        <TextInput label="Name" placeholder="Your name" {...form.getInputProps('name')} />
 
         <TextInput
+          className={classes.textinput}
           label="Email"
           placeholder="Your email"
           {...form.getInputProps('email')}
@@ -51,13 +52,17 @@ export default function ContactForm() {
         />
 
         <Textarea
+          className={classes.textarea}
           label="Message"
           placeholder="Your message"
           {...form.getInputProps('message')}
+          autosize
+          minRows={5}
+          resize="vertical"
           required
         />
 
-        <Group>
+        <Group mt={'md'} className={classes.submitButtonWrapper}>
           <Button type="submit">Submit</Button>
         </Group>
       </Stack>

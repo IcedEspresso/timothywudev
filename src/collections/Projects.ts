@@ -18,6 +18,11 @@ export const Projects: CollectionConfig = {
       required: true,
     },
     {
+      name: 'description',
+      type: 'richText',
+      label: 'Project Description',
+    },
+    {
       name: 'date',
       type: 'date',
       label: 'Project Date',

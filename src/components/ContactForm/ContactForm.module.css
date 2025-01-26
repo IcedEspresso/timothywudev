@@ -1,0 +1,7 @@
+.submitButtonWrapper {
+  justify-content: flex-start;
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    justify-content: flex-end;
+  }
+}

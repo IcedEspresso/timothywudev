@@ -2,7 +2,7 @@ import type { CollectionAfterOperationHook, CollectionConfig } from 'payload'
 import type { FormSubmission } from '@/payload-types'
 
 const afterOperationHook: CollectionAfterOperationHook = async ({ result, operation, req }) => {
-  console.log('result:', result) // Log the result of the operation
+  // console.log('result:', result)
   const formSubmission = result as FormSubmission
   if (operation === 'create') {
     try {
@@ -24,7 +24,7 @@ const afterOperationHook: CollectionAfterOperationHook = async ({ result, operat
     }
   }
 
-  return result // Return the result as is or modify it if needed
+  return result
 }
 
 export const FormSubmissions: CollectionConfig = {

@@ -1,14 +1,21 @@
 .header {
-  height: 56px;
-  background-color: var(--mantine-color-body);
-  border-bottom: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+  position: absolute;
+  width: 100%;
+}
+
+.header > div {
+  background: white;
+  box-shadow: 0 0 20px 0 #00000017;
+  padding-top: var(--mantine-spacing-xs);
+  padding-bottom: var(--mantine-spacing-xs);
+  border-bottom-right-radius: var(--mantine-radius-md);
+  border-bottom-left-radius: var(--mantine-radius-md);
 }
 
 .inner {
-  height: 56px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .link {

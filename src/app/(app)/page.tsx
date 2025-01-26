@@ -1,169 +1,141 @@
 'use client'
 
-import { useState, useEffect, Key } from 'react'
-import NextImage from 'next/image'
+import { useState } from 'react'
+
 import {
   Container,
   Grid,
   Title,
   Text,
-  Button,
   Stack,
   Group,
   Box,
-  Image,
-  Anchor,
-  Code,
   Divider,
-  UnstyledButton,
+  Flex,
+  Anchor,
 } from '@mantine/core'
-import { Carousel } from '@mantine/carousel'
 import globalClass from './Global.module.css'
 import classes from './Home.module.css'
-import { stringify } from 'qs-esm'
-import type { Where } from 'payload'
-import { IconBrandLinkedin } from '@tabler/icons-react'
-import { Media, Project } from '@payload-types'
-import PrimaryForm from '@components/ContactForm/PrimaryForm'
-
-const query: Where = {
-  isFeatured: {
-    equals: true,
-  },
-}
+import { FaLinkedin, FaSquareGithub } from 'react-icons/fa6'
+import { TiDocumentText } from 'react-icons/ti'
+import Showcase from '@components/Showcase/Showcase'
+import { LINKS } from '@/public/links'
 
 export default function Page() {
-  const [projects, setProjects] = useState([])
+  const [activeColumn, setActiveColumn] = useState(0)
 
-  useEffect(() => {
-    async function fetchProjects() {
-      const stringifiedQuery = stringify({ where: query }, { addQueryPrefix: true })
-      const response = await fetch(`http://localhost:3000/api/projects${stringifiedQuery}`)
-      const data = await response.json()
-
-      console.log(data)
-      setProjects(data.docs)
-    }
-    fetchProjects()
-  }, [])
+  const handleMouseEnterColumn = (columnId: number) => {
+    setActiveColumn(columnId)
+    console.log(columnId)
+  }
 
   return (
     <>
-      <Container className={`${globalClass.belowHeader} ${globalClass.section}`}>
-        <Grid>
-          <Grid.Col span={6}>
-            <Title order={1}>About Me</Title>
-          </Grid.Col>
-          <Grid.Col span={6}>
-            <Text size="md">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum natus atque, fugit
-              tenetur obcaecati maxime voluptatibus earum laborum rem nulla. Praesentium ipsam aut
-              at incidunt consequatur quos officiis tempore harum!
-            </Text>
-            <Group mt="2rem" align="center">
-              <Button>Download My Resume</Button>{' '}
-              <UnstyledButton
-                component="a"
-                href="https://www.linkedin.com/in/timothywuiced/"
-                target="_blank"
-                className={classes.unstyledButtonIcon}
-              >
-                <IconBrandLinkedin size={28} />
-              </UnstyledButton>
+      <Flex direction={'column'} h={{ base: '30vh', sm: '100vh' }} bg={'#efebe5'}>
+        <Container w={'100%'} className={classes.header}>
+          <Title fz={{ base: '3rem', xs: '4rem', sm: '7rem' }}>
+            timothywu<span className={classes.domext}>.dev</span>
+          </Title>
+          <Group gap={'sm'}>
+            <Title order={1} fz={{ base: '1.2rem', xs: '2.125rem' }}>
+              Front-End Developer
+            </Title>
+            <Group gap={2} className={classes.socialIcons}>
+              <Anchor href={LINKS.LINKEDIN} target="_blank" lh={0}>
+                <FaLinkedin size={32} />
+              </Anchor>
+              <Anchor href={LINKS.GITHUB} target="_blank" lh={0}>
+                <FaSquareGithub size={32} />
+              </Anchor>
             </Group>
-          </Grid.Col>
-        </Grid>
-      </Container>
-      <Container className={globalClass.section}>
-        <Stack mb={'50'}>
-          <Title order={1}>Showcase</Title>
-          <Group justify="space-between" align="flex-start" wrap="nowrap">
-            <Text size="md" maw={'700px'}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum natus atque, fugit
-              tenetur obcaecati maxime voluptatibus earum laborum rem nulla.
-            </Text>
-            <Button>More Here</Button>
           </Group>
-        </Stack>
-        <Box>
-          {projects.map((project: Project) => {
-            return (
-              <Box key={project.id} mb={'xl'}>
-                {/* Project Header */}
-                <Group justify="space-between" align="flex-end">
-                  <Stack gap={'0'}>
-                    <Title order={3}>{project.title}</Title>
-
-                    {project.url && (
-                      <Anchor href={project.url} target="_blank">
-                        {project.url}
-                      </Anchor>
-                    )}
-                  </Stack>
-                  <Stack ta={'right'} gap={0}>
-                    <Text className={globalClass.textUppercase} lh={1}>
-                      Start Date
-                    </Text>
-                    <Title order={1} lh={1}>
-                      {new Date(project.date).getFullYear()}
-                    </Title>
-                  </Stack>
-                </Group>
-
-                <Divider mt="xs" mb="lg" />
-
-                {/* Project Images */}
-                <Carousel
-                  classNames={{
-                    root: classes.carouselRoot,
-                    control: classes.carouselControl,
-                    controls: classes.carouselControls,
-                  }}
-                  mb={20}
-                  slideGap="md"
-                  controlSize={30}
-                  loop
-                  withControls={true}
-                >
-                  {(project.image as Media[])?.map((image: Media, index: number) => (
-                    <Carousel.Slide key={image.id}>
-                      <Image
-                        component={NextImage}
-                        src={image.url}
-                        alt={`${project.title} image ${index + 1}`}
-                        width={'0'}
-                        height={'0'}
-                        style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
-                      />
-                    </Carousel.Slide>
-                  ))}
-                </Carousel>
-                {/* Project Tags */}
-                <Group>
-                  {project.tags?.map((tag: string) => (
-                    <Code className={classes.projectTag} key={tag}>
-                      {tag}
-                    </Code>
-                  ))}
-                </Group>
-              </Box>
-            )
-          })}
-        </Box>
+          <Title order={5}>
+            View my{' '}
+            <Anchor href="" fw={700} style={{ fontSize: 'revert' }}>
+              resume <TiDocumentText />
+            </Anchor>
+          </Title>
+        </Container>
+        <Container fluid p={0} w={'100%'} flex={1} display={{ base: 'none', sm: 'block' }}>
+          <Grid
+            component={'nav'}
+            classNames={{
+              root: classes.navGrid,
+              inner: classes.navGridInner,
+              col: classes.navGridCol,
+            }}
+            overflow="hidden"
+            style={{ '--column': activeColumn }}
+            data-column={activeColumn}
+          >
+            <Grid.Col
+              span={4}
+              onMouseEnter={() => handleMouseEnterColumn(0)}
+              renderRoot={(props) => (
+                <a href="#about" {...props}>
+                  About.
+                </a>
+              )}
+            ></Grid.Col>
+            <Grid.Col
+              span={4}
+              onMouseEnter={() => handleMouseEnterColumn(1)}
+              renderRoot={(props) => (
+                <a href="#showcase" {...props}>
+                  Projects.
+                </a>
+              )}
+            ></Grid.Col>
+            <Grid.Col
+              span={4}
+              onMouseEnter={() => handleMouseEnterColumn(2)}
+              renderRoot={(props) => (
+                <a href="#contact" {...props}>
+                  Contact.
+                </a>
+              )}
+            ></Grid.Col>
+          </Grid>
+        </Container>
+      </Flex>
+      <Box id="about" className={`${globalClass.section} ${classes.aboutMe}`}>
+        <Container>
+          <Stack>
+            <Title order={2} mb={'md'} ta={'center'}>
+              About Me
+            </Title>
+          </Stack>
+          <Group className={classes.aboutText} maw={800} mx={'auto'}>
+            <Text>
+              I&apos;m a developer who loves programming—the challenge, the puzzle, and especially
+              the satisfaction of bringing all the pieces together into a result that everyone is
+              happy with. As a Front-End Developer foremost, I have transformed various designs,
+              ideas, and even raw concepts into functional and responsive user-friendly interfaces.
+              On occasion, I will take on the Back-End role and responsibilities. I have experience
+              and knowledge in setting up CRMs, working with APIs, setting up forms, site
+              deployment, and site hosting. I may not know everything, but I will certainly figure
+              it out!
+            </Text>
+            <Text>
+              I&apos;m highly enthusiastic about technology and do my best to follow advancements.
+              This drives me to continuously learn new computer-related skills, whether it&apos;s
+              picking up another programming language or diving into yet another JavaScript
+              framework or library.
+            </Text>
+            <Text>
+              In my free time, I like to explore other avenues of creativity. Recently, my
+              technological hobbies have included game development, CAD modeling, and 3D modeling.
+              Eventually, I&apos;d like to improve my drawing abilities and, in tandem, enhance my
+              design skills for the areas mentioned above.
+            </Text>
+          </Group>
+        </Container>
+      </Box>
+      <Container>
+        <Divider></Divider>
       </Container>
-      <Container className={globalClass.section}>
-        <Grid>
-          <Grid.Col span={6}>
-            <Box>
-              <Title>Contact Me</Title>
-            </Box>
-          </Grid.Col>
-          <Grid.Col span={6}>
-            <PrimaryForm />
-          </Grid.Col>
-        </Grid>
-      </Container>
-      {/* <ContactForm /> */}
+
+      <Showcase />
     </>
   )
 }

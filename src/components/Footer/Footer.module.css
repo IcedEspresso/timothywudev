@@ -1,0 +1,17 @@
+.footerSection {
+  background-color: var(--mantine-color-dark-6);
+  color: white;
+  padding: 5rem 0;
+}
+
+.iconLink {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4rem;
+  width: max-content;
+
+  & svg {
+    margin-top: 0.2rem;
+  }
+}

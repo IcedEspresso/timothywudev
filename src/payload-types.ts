@@ -106,6 +106,21 @@ export interface Media {
 export interface Project {
   id: number;
   title: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   date: string;
   image?: (number | Media)[] | null;
   url?: string | null;
@@ -251,6 +266,7 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface ProjectsSelect<T extends boolean = true> {
   title?: T;
+  description?: T;
   date?: T;
   image?: T;
   url?: T;

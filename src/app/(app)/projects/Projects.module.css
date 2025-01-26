@@ -1,0 +1,131 @@
+/* Header */
+.back {
+  display: flex;
+  align-items: center;
+  line-height: 0;
+  margin-top: 0.4rem;
+
+  & svg {
+    margin-top: 0.1rem;
+    margin-right: 0.2rem;
+    transition: 0.2s;
+  }
+
+  &:hover {
+    text-decoration: none;
+    color: var(--mantine-color-teal-7);
+  }
+
+  &:hover svg {
+    transform: translateX(-5px);
+    color: var(--mantine-color-teal-7);
+  }
+}
+
+/* Projects */
+.divider {
+  border-color: var(--mantine-color-coffee-9);
+  border-width: 4px;
+  margin-bottom: 2rem;
+}
+
+/* Carousel */
+.showcaseSection {
+  padding-top: 5rem;
+  padding-bottom: 8.5rem;
+}
+
+.showcaseProject {
+  @media (max-width: $mantine-breakpoint-sm) {
+    flex-direction: column;
+
+    & img {
+      max-height: 180px;
+      object-position: top;
+      margin-bottom: var(--mantine-spacing-md);
+    }
+  }
+}
+
+.showcaseDetails {
+  & a {
+    color: var(--mantine-color-teal-7);
+  }
+
+  & div:last-child {
+    & p {
+      color: var(--mantine-color-dark-2);
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.carouselControls {
+  transition: opacity 150ms ease;
+  opacity: 0;
+}
+
+.carouselControl {
+  background-color: var(--mantine-color-dark-6);
+  color: white;
+}
+
+.carouselIndicator {
+  background: var(--mantine-color-dark-6);
+}
+
+.carouselRoot {
+  &:hover {
+    .carouselControls {
+      opacity: 1;
+    }
+  }
+}
+
+.carouselViewport {
+  border: 4px solid #e9e9e9;
+}
+
+.projectTitle {
+  font-size: calc(1.1rem * var(--mantine-scale));
+}
+
+.projectDate {
+  font-size: calc(1.7rem * var(--mantine-scale));
+}
+
+.projectImageWrapper {
+  cursor: zoom-in;
+
+  &:hover .expandImage {
+    color: var(--mantine-color-teal-7);
+  }
+}
+
+.projectImage {
+  border: 4px solid #e9e9e9;
+}
+
+.expandImage {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+
+  & path {
+    transform-origin: center;
+    transition: 0.2s;
+  }
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.projectTag {
+  background-color: var(--mantine-color-coffee-1);
+}

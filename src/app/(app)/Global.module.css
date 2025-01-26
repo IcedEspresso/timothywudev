@@ -1,10 +1,10 @@
 .section {
-  margin-bottom: 100px;
+  padding-bottom: 100px;
   /* background: red; */
 }
 
 .belowHeader {
-  margin-top: 80px;
+  padding-top: 170px;
 }
 
 /* Utility Classes */
