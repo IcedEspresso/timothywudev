@@ -21,6 +21,7 @@
     "@mantine/form": "^7.16.0",
     "@mantine/hooks": "^7.15.3",
     "@payloadcms/db-sqlite": "latest",
+    "@payloadcms/db-vercel-postgres": "^3.19.0",
     "@payloadcms/email-resend": "^3.18.0",
     "@payloadcms/next": "latest",
     "@payloadcms/payload-cloud": "latest",
