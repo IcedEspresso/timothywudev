@@ -236,8 +236,9 @@ export default function Page() {
                     <Carousel.Slide key={img.id}>
                       <Image
                         component={NextImage}
-                        width={'600'}
-                        height={'300'}
+                        // width={'600'}
+                        // height={'300'}
+                        fill={true}
                         src={img.url}
                         alt={img.alt}
                         style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
