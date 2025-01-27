@@ -10,7 +10,7 @@
 }
 
 .showcaseIntro {
-  align-items: flex-start ;
+  align-items: flex-start;
 
   @media (max-width: $mantine-breakpoint-sm) {
     align-items: center;

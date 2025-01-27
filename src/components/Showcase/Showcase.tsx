@@ -43,7 +43,7 @@ export default function Showcase() {
       setProjects(data.docs)
     }
     fetchProjects()
-  })
+  }, [])
 
   return (
     <Box id="showcase" className={classes.showcaseSection}>
@@ -76,7 +76,7 @@ export default function Showcase() {
           </Box>
           <Box flex={8}>
             <Box>
-              {projects && projects.length > 1 ? (
+              {projects && projects.length >= 1 ? (
                 <>
                   {projects.map((project: Project) => {
                     return (
