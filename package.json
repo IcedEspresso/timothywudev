@@ -26,6 +26,7 @@
     "@payloadcms/next": "latest",
     "@payloadcms/payload-cloud": "latest",
     "@payloadcms/richtext-lexical": "latest",
+    "@payloadcms/storage-vercel-blob": "^3.19.0",
     "@phosphor-icons/react": "^2.1.7",
     "@tabler/icons-react": "^3.29.0",
     "cross-env": "^7.0.3",
