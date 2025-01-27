@@ -186,13 +186,15 @@ export default function Page() {
 
                         <Divider mt="xs" mb="lg" />
 
-                        <Box mb={'md'}>
-                          <RichText
-                            data={
-                              project.description as SerializedEditorState<SerializedLexicalNode>
-                            }
-                          />
-                        </Box>
+                        {project.description && (
+                          <Box mb="md">
+                            <RichText
+                              data={
+                                project.description as SerializedEditorState<SerializedLexicalNode>
+                              }
+                            />
+                          </Box>
+                        )}
 
                         {/* Project Tags */}
                         <Group gap={'xs'}>
