@@ -217,6 +217,9 @@ export default function Page() {
                 title="Gallery"
                 centered
                 size={'var(--container-size-lg)'}
+                classNames={{
+                  content: classes.modalContent,
+                }}
               >
                 <Carousel
                   classNames={{
@@ -225,6 +228,7 @@ export default function Page() {
                     controls: classes.carouselControls,
                     viewport: classes.carouselViewport,
                     indicator: classes.carouselIndicator,
+                    slide: classes.carouselSlide,
                   }}
                   slideGap="0"
                   controlSize={30}
@@ -236,9 +240,8 @@ export default function Page() {
                     <Carousel.Slide key={img.id}>
                       <Image
                         component={NextImage}
-                        // width={'600'}
-                        // height={'300'}
                         fill={true}
+                        pos={'relative'}
                         src={img.url}
                         alt={img.alt}
                         style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
