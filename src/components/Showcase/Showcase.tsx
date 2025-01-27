@@ -129,8 +129,8 @@ export default function Showcase() {
                                 component={NextImage}
                                 src={image.url}
                                 alt={`${project.title} image ${index + 1}`}
-                                width={'0'}
-                                height={'0'}
+                                width={'600'}
+                                height={'300'}
                                 style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
                               />
                             </Carousel.Slide>

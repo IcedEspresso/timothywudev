@@ -144,8 +144,8 @@ export default function Page() {
                             component={NextImage}
                             src={(project.image?.[0] as Media).url}
                             alt={`${project.title}`}
-                            width={'0'}
-                            height={'0'}
+                            width={'600'}
+                            height={'300'}
                             style={{
                               width: '100%',
                               height: 'auto',
@@ -236,10 +236,10 @@ export default function Page() {
                     <Carousel.Slide key={img.id}>
                       <Image
                         component={NextImage}
+                        width={'600'}
+                        height={'300'}
                         src={img.url}
                         alt={img.alt}
-                        width={'0'}
-                        height={'0'}
                         style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
                       />
                     </Carousel.Slide>

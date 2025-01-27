@@ -33,6 +33,7 @@ export const Projects: CollectionConfig = {
       type: 'upload',
       label: 'Project Image',
       relationTo: 'media',
+      required: true,
       hasMany: true,
     },
     {
