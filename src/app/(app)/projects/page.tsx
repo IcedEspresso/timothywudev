@@ -107,7 +107,7 @@ export default function Page() {
         <Container pb={'5rem'}>
           <Divider className={classes.divider} />
 
-          {projects && projects.length > 1 ? (
+          {projects && projects.length >= 1 ? (
             <>
               <Group mt={'3rem'} pb={'md'} justify="flex-end" align="center">
                 <Group>
