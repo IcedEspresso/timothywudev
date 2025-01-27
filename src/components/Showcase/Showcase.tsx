@@ -35,10 +35,11 @@ export default function Showcase() {
 
   useEffect(() => {
     async function fetchProjects() {
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL
+      console.log(baseUrl)
       const stringifiedQuery = stringify({ where: query }, { addQueryPrefix: true })
-      const response = await fetch(`http://localhost:3000/api/projects${stringifiedQuery}`)
+      const response = await fetch(`${baseUrl}/api/projects${stringifiedQuery}`)
       const data = await response.json()
-
       console.log(data)
       setProjects(data.docs)
     }
@@ -157,7 +158,13 @@ export default function Showcase() {
               )}
             </Box>
             <Box w={'min-content'} mx={'auto'} mt={rem('70px')}>
-              <Button mx={'auto'} component={Link} href="/projects" w={'min-content'}>
+              <Button
+                mx={'auto'}
+                component={Link}
+                href="/projects"
+                w={'min-content'}
+                display={{ base: 'block', sm: 'none' }}
+              >
                 See All Projects
               </Button>
             </Box>

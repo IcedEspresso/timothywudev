@@ -39,7 +39,9 @@ export default function Page() {
 
   useEffect(() => {
     async function fetchProjects() {
-      const response = await fetch(`http://localhost:3000/api/projects`)
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL
+
+      const response = await fetch(`${baseUrl}/api/projects`)
       const data = await response.json()
 
       // Default Sort: Newest First
