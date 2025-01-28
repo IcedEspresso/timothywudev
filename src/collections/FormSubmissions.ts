@@ -12,7 +12,7 @@ const afterOperationHook: CollectionAfterOperationHook = async ({ result, operat
         html: `
               <p><strong>Name:</strong> ${formSubmission.name}</p>
               <p><strong>Email:</strong> ${formSubmission.email}</p>
-              <p><strong>Phone:</strong> ${formSubmission.phone || 'Not provided'}</p><hr />
+              <p><strong>Phone:</strong> ${formSubmission.phone || 'Not provided'}</p>
               <p><strong>Message:</strong></p><hr />
               <p>${formSubmission.message}</p>
             `,
