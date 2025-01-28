@@ -25,8 +25,8 @@ export default buildConfig({
   },
   email: resendAdapter({
     defaultFromAddress: 'forms@contact.timothywu.dev',
-    defaultFromName: 'timothywu.dev Website',
-    apiKey: process.env.RESEND_API_KEY || '',
+    defaultFromName: 'Forms @ timothywu.dev',
+    apiKey: process.env.RESEND_API_KEY ?? '',
   }),
   collections: [Users, Media, Projects, FormSubmissions],
   editor: lexicalEditor(),

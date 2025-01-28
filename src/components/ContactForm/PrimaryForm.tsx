@@ -1,5 +1,5 @@
 import { useForm } from '@mantine/form'
-import { Button, Group, Stack, Textarea, TextInput } from '@mantine/core'
+import { Button, Fieldset, Group, Stack, Textarea, TextInput } from '@mantine/core'
 import classes from './ContactForm.module.css'
 
 export default function ContactForm() {
@@ -33,6 +33,11 @@ export default function ContactForm() {
       }
 
       alert('Form submitted successfully!')
+
+      const fieldsets = document.querySelectorAll('fieldset')
+      fieldsets.forEach((fieldset) => {
+        fieldset.disabled = true
+      })
     } catch (error) {
       alert((error as Error).message)
     }
@@ -40,32 +45,34 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
-      <Stack gap={'sm'}>
-        <TextInput label="Name" placeholder="Your name" {...form.getInputProps('name')} />
+      <Fieldset className={classes.form} variant="unstyled">
+        <Stack gap={'sm'}>
+          <TextInput label="Name" placeholder="Your name" {...form.getInputProps('name')} />
 
-        <TextInput
-          className={classes.textinput}
-          label="Email"
-          placeholder="Your email"
-          {...form.getInputProps('email')}
-          required
-        />
+          <TextInput
+            className={classes.textinput}
+            label="Email"
+            placeholder="Your email"
+            {...form.getInputProps('email')}
+            required
+          />
 
-        <Textarea
-          className={classes.textarea}
-          label="Message"
-          placeholder="Your message"
-          {...form.getInputProps('message')}
-          autosize
-          minRows={5}
-          resize="vertical"
-          required
-        />
+          <Textarea
+            className={classes.textarea}
+            label="Message"
+            placeholder="Your message"
+            {...form.getInputProps('message')}
+            autosize
+            minRows={5}
+            resize="vertical"
+            required
+          />
 
-        <Group mt={'md'} className={classes.submitButtonWrapper}>
-          <Button type="submit">Submit</Button>
-        </Group>
-      </Stack>
+          <Group mt={'md'} className={classes.submitButtonWrapper}>
+            <Button type="submit">Submit</Button>
+          </Group>
+        </Stack>
+      </Fieldset>
     </form>
   )
 }
