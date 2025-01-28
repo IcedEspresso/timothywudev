@@ -87,8 +87,8 @@ export default function Page() {
    ** id is the id of the project
    */
   const handleCarousel = (id: number) => {
-    open()
     setCarousel(id)
+    open()
     console.log(projects[carousel - 1])
   }
 
@@ -236,7 +236,10 @@ export default function Page() {
                   withControls={true}
                   withIndicators={true}
                 >
-                  {((projects[carousel - 1] as Project)?.image as Media[]).map((img) => (
+                  {(
+                    (projects.find((p: Project) => p.id === carousel) as Project | undefined)
+                      ?.image as Media[]
+                  ).map((img: Media) => (
                     <Carousel.Slide key={img.id}>
                       <Image
                         component={NextImage}

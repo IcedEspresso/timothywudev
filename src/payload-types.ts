@@ -136,9 +136,9 @@ export interface Project {
         | 'hubspot'
         | 'salesforce'
         | 'wordpress'
+        | 'php'
         | 'threejs'
         | 'nextjs'
-        | 'email'
         | 'cad'
         | 'modeling'
       )[]
