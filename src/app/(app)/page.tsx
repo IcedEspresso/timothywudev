@@ -49,9 +49,9 @@ export default function Page() {
               </Anchor>
             </Group>
           </Group>
-          <Title order={5}>
+          <Title order={5} mt={{ base: '1rem', sm: 0 }}>
             View my{' '}
-            <Anchor href="" fw={700} style={{ fontSize: 'revert' }}>
+            <Anchor href="/resume.pdf" target="_blank" fw={700} style={{ fontSize: 'revert' }}>
               resume <TiDocumentText />
             </Anchor>
           </Title>
@@ -82,7 +82,7 @@ export default function Page() {
               onMouseEnter={() => handleMouseEnterColumn(1)}
               renderRoot={(props) => (
                 <a href="#showcase" {...props}>
-                  Projects.
+                  Experience.
                 </a>
               )}
             ></Grid.Col>
