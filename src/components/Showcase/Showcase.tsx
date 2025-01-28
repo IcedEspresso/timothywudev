@@ -36,9 +36,8 @@ export default function Showcase() {
   useEffect(() => {
     async function fetchProjects() {
       const stringifiedQuery = stringify({ where: query }, { addQueryPrefix: true })
-      const response = await fetch(`http://localhost:3000/api/projects${stringifiedQuery}`)
+      const response = await fetch(`/api/projects${stringifiedQuery}`)
       const data = await response.json()
-
       console.log(data)
       setProjects(data.docs)
     }
@@ -130,8 +129,8 @@ export default function Showcase() {
                                 component={NextImage}
                                 src={image.url}
                                 alt={`${project.title} image ${index + 1}`}
-                                width={'0'}
-                                height={'0'}
+                                width={'600'}
+                                height={'300'}
                                 style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
                               />
                             </Carousel.Slide>
@@ -157,7 +156,13 @@ export default function Showcase() {
               )}
             </Box>
             <Box w={'min-content'} mx={'auto'} mt={rem('70px')}>
-              <Button mx={'auto'} component={Link} href="/projects" w={'min-content'}>
+              <Button
+                mx={'auto'}
+                component={Link}
+                href="/projects"
+                w={'min-content'}
+                display={{ base: 'block', sm: 'none' }}
+              >
                 See All Projects
               </Button>
             </Box>

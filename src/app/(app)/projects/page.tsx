@@ -39,7 +39,7 @@ export default function Page() {
 
   useEffect(() => {
     async function fetchProjects() {
-      const response = await fetch(`http://localhost:3000/api/projects`)
+      const response = await fetch(`/api/projects`)
       const data = await response.json()
 
       // Default Sort: Newest First
@@ -107,7 +107,7 @@ export default function Page() {
         <Container pb={'5rem'}>
           <Divider className={classes.divider} />
 
-          {projects && projects.length > 1 ? (
+          {projects && projects.length >= 1 ? (
             <>
               <Group mt={'3rem'} pb={'md'} justify="flex-end" align="center">
                 <Group>
@@ -144,8 +144,8 @@ export default function Page() {
                             component={NextImage}
                             src={(project.image?.[0] as Media).url}
                             alt={`${project.title}`}
-                            width={'0'}
-                            height={'0'}
+                            width={'600'}
+                            height={'300'}
                             style={{
                               width: '100%',
                               height: 'auto',
@@ -186,13 +186,15 @@ export default function Page() {
 
                         <Divider mt="xs" mb="lg" />
 
-                        <Box mb={'md'}>
-                          <RichText
-                            data={
-                              project.description as SerializedEditorState<SerializedLexicalNode>
-                            }
-                          />
-                        </Box>
+                        {project.description && (
+                          <Box mb="md">
+                            <RichText
+                              data={
+                                project.description as SerializedEditorState<SerializedLexicalNode>
+                              }
+                            />
+                          </Box>
+                        )}
 
                         {/* Project Tags */}
                         <Group gap={'xs'}>
@@ -215,6 +217,9 @@ export default function Page() {
                 title="Gallery"
                 centered
                 size={'var(--container-size-lg)'}
+                classNames={{
+                  content: classes.modalContent,
+                }}
               >
                 <Carousel
                   classNames={{
@@ -223,6 +228,7 @@ export default function Page() {
                     controls: classes.carouselControls,
                     viewport: classes.carouselViewport,
                     indicator: classes.carouselIndicator,
+                    slide: classes.carouselSlide,
                   }}
                   slideGap="0"
                   controlSize={30}
@@ -234,10 +240,10 @@ export default function Page() {
                     <Carousel.Slide key={img.id}>
                       <Image
                         component={NextImage}
+                        fill={true}
+                        pos={'relative'}
                         src={img.url}
                         alt={img.alt}
-                        width={'0'}
-                        height={'0'}
                         style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
                       />
                     </Carousel.Slide>
