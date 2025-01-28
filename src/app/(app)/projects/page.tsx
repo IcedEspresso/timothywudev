@@ -221,7 +221,7 @@ export default function Page() {
                   content: classes.modalContent,
                 }}
               >
-                <Carousel
+                {/* <Carousel
                   classNames={{
                     root: classes.carouselRoot,
                     control: classes.carouselControl,
@@ -251,7 +251,7 @@ export default function Page() {
                       />
                     </Carousel.Slide>
                   ))}
-                </Carousel>
+                </Carousel> */}
               </Modal>
             </>
           ) : (
