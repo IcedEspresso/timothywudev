@@ -218,7 +218,7 @@ export default function Page() {
                 onClose={close}
                 title="Gallery"
                 centered
-                size={'var(--container-size-lg)'}
+                size={'60rem'}
                 classNames={{
                   content: classes.modalContent,
                 }}
