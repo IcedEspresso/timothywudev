@@ -30,7 +30,7 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 import type { SerializedEditorState, SerializedLexicalNode } from 'lexical'
 
 export default function Page() {
-  const [projects, setProjects] = useState([])
+  const [projects, setProjects] = useState<Project[]>([])
   const [sort, setSort] = useState('Newest First')
 
   /* Carousel Modal */
@@ -39,7 +39,7 @@ export default function Page() {
 
   useEffect(() => {
     async function fetchProjects() {
-      const response = await fetch(`/api/projects`)
+      const response = await fetch(`/api/projects?limit=0`)
       const data = await response.json()
 
       // Default Sort: Newest First
@@ -87,10 +87,27 @@ export default function Page() {
    ** id is the id of the project
    */
   const handleCarousel = (id: number) => {
-    open()
     setCarousel(id)
+    open()
     console.log(projects[carousel - 1])
   }
+
+  const shimmer = (w: number, h: number) => `
+  <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <linearGradient id="g">
+        <stop stop-color="#333" offset="20%" />
+        <stop stop-color="#222" offset="50%" />
+        <stop stop-color="#333" offset="70%" />
+      </linearGradient>
+    </defs>
+    <rect width="${w}" height="${h}" fill="#333" />
+    <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
+    <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
+  </svg>`
+
+  const toBase64 = (str: string) =>
+    typeof window === 'undefined' ? Buffer.from(str).toString('base64') : window.btoa(str)
 
   return (
     <>
@@ -140,19 +157,21 @@ export default function Page() {
                           className={classes.projectImageWrapper}
                           onClick={() => handleCarousel(project.id)}
                         >
-                          <Image
-                            component={NextImage}
-                            src={(project.image?.[0] as Media).url}
-                            alt={`${project.title}`}
-                            width={'600'}
-                            height={'300'}
-                            style={{
-                              width: '100%',
-                              height: 'auto',
-                              objectFit: 'cover',
-                              border: '1px solid #e9e9e9',
-                            }}
-                          />
+                          {project.image && project.image.length > 0 && (
+                            <Image
+                              component={NextImage}
+                              src={(project.image[0] as Media).url}
+                              alt={`${project.title}`}
+                              width={'600'}
+                              height={'300'}
+                              style={{
+                                width: '100%',
+                                height: 'auto',
+                                objectFit: 'cover',
+                                border: '1px solid #e9e9e9',
+                              }}
+                            />
+                          )}
                           <IoExpandSharp className={classes.expandImage} />
                         </Box>
                       </Box>
@@ -216,7 +235,7 @@ export default function Page() {
                 onClose={close}
                 title="Gallery"
                 centered
-                size={'var(--container-size-lg)'}
+                size={'60rem'}
                 classNames={{
                   content: classes.modalContent,
                 }}
@@ -236,18 +255,29 @@ export default function Page() {
                   withControls={true}
                   withIndicators={true}
                 >
-                  {((projects[carousel - 1] as Project)?.image as Media[]).map((img) => (
-                    <Carousel.Slide key={img.id}>
-                      <Image
-                        component={NextImage}
-                        fill={true}
-                        pos={'relative'}
-                        src={img.url}
-                        alt={img.alt}
-                        style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
-                      />
-                    </Carousel.Slide>
-                  ))}
+                  {(
+                    (projects.find((p: Project) => p.id === carousel)?.image as
+                      | Media[]
+                      | undefined) ?? []
+                  ).length > 0 ? (
+                    (projects.find((p: Project) => p.id === carousel)?.image as Media[]).map(
+                      (img: Media) => (
+                        <Carousel.Slide key={img.id}>
+                          <Image
+                            component={NextImage}
+                            width={920}
+                            height={461.7} // Generally the size of the screenshots I've taken
+                            placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(920, 461.7))}`}
+                            src={img.url}
+                            alt={img.alt}
+                            style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+                          />
+                        </Carousel.Slide>
+                      ),
+                    )
+                  ) : (
+                    <div>No images available for this project</div>
+                  )}
                 </Carousel>
               </Modal>
             </>

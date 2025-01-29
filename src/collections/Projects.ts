@@ -33,7 +33,6 @@ export const Projects: CollectionConfig = {
       type: 'upload',
       label: 'Project Image',
       relationTo: 'media',
-      required: true,
       hasMany: true,
     },
     {
@@ -55,6 +54,7 @@ export const Projects: CollectionConfig = {
         { label: 'CRM', value: 'crm' },
         { label: 'Hubspot', value: 'hubspot' },
         { label: 'Salesforce', value: 'salesforce' },
+        { label: 'Klaviyo', value: 'klaviyo' },
         { label: 'WordPress', value: 'wordpress' },
         { label: 'PHP', value: 'php' },
         { label: 'Three.js', value: 'threejs' },
