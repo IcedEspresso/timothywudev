@@ -158,21 +158,24 @@ export default function Page() {
                           onClick={() => handleCarousel(project.id)}
                         >
                           {project.image && project.image.length > 0 && (
-                            <Image
-                              component={NextImage}
-                              src={(project.image[0] as Media).url}
-                              alt={`${project.title}`}
-                              width={'600'}
-                              height={'300'}
-                              style={{
-                                width: '100%',
-                                height: 'auto',
-                                objectFit: 'cover',
-                                border: '1px solid #e9e9e9',
-                              }}
-                            />
+                            <>
+                              <Image
+                                component={NextImage}
+                                src={(project.image[0] as Media).url}
+                                alt={`${project.title}`}
+                                width={'600'}
+                                height={'300'}
+                                style={{
+                                  width: '100%',
+                                  height: 'auto',
+                                  objectFit: 'cover',
+                                  border: '1px solid #e9e9e9',
+                                }} 
+                              />
+                              <IoExpandSharp className={classes.expandImage} />
+                            </>
                           )}
-                          <IoExpandSharp className={classes.expandImage} />
+                          
                         </Box>
                       </Box>
                       {/* Project Details */}
