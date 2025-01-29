@@ -39,7 +39,7 @@ export default function Page() {
 
   useEffect(() => {
     async function fetchProjects() {
-      const response = await fetch(`/api/projects`)
+      const response = await fetch(`/api/projects?limit=0`)
       const data = await response.json()
 
       // Default Sort: Newest First
