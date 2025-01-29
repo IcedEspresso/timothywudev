@@ -266,8 +266,8 @@ export default function Page() {
                           <Image
                             component={NextImage}
                             width={920}
-                            height={421.7}
-                            placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(920, 421.7))}`}
+                            height={461.7} // Generally the size of the screenshots I've taken
+                            placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(920, 461.7))}`}
                             src={img.url}
                             alt={img.alt}
                             style={{ width: '100%', height: 'auto', objectFit: 'cover' }}

@@ -36,6 +36,10 @@
 }
 
 .showcaseProject {
+  & img {
+    max-height: 180px;
+  }
+
   @media (max-width: $mantine-breakpoint-sm) {
     flex-direction: column;
 
