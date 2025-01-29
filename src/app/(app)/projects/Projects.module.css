@@ -37,7 +37,7 @@
 
 .showcaseProject {
   & img {
-    max-height: 180px;
+    max-height: 138px;
   }
 
   @media (max-width: $mantine-breakpoint-sm) {
