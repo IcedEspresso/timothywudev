@@ -122,7 +122,7 @@ export interface Project {
     [k: string]: unknown;
   } | null;
   date: string;
-  image: (number | Media)[];
+  image?: (number | Media)[] | null;
   url?: string | null;
   tags?:
     | (

@@ -30,7 +30,7 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 import type { SerializedEditorState, SerializedLexicalNode } from 'lexical'
 
 export default function Page() {
-  const [projects, setProjects] = useState([])
+  const [projects, setProjects] = useState<Project[]>([])
   const [sort, setSort] = useState('Newest First')
 
   /* Carousel Modal */
@@ -223,7 +223,7 @@ export default function Page() {
                   content: classes.modalContent,
                 }}
               >
-                {/* <Carousel
+                <Carousel
                   classNames={{
                     root: classes.carouselRoot,
                     control: classes.carouselControl,
@@ -239,21 +239,28 @@ export default function Page() {
                   withIndicators={true}
                 >
                   {(
-                    (projects.find((p: Project) => p.id === carousel) as Project | undefined)
-                      ?.image as Media[]
-                  ).map((img: Media) => (
-                    <Carousel.Slide key={img.id}>
-                      <Image
-                        component={NextImage}
-                        fill={true}
-                        pos={'relative'}
-                        src={img.url}
-                        alt={img.alt}
-                        style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
-                      />
-                    </Carousel.Slide>
-                  ))}
-                </Carousel> */}
+                    (projects.find((p: Project) => p.id === carousel)?.image as
+                      | Media[]
+                      | undefined) ?? []
+                  ).length > 0 ? (
+                    (projects.find((p: Project) => p.id === carousel)?.image as Media[]).map(
+                      (img: Media) => (
+                        <Carousel.Slide key={img.id}>
+                          <Image
+                            component={NextImage}
+                            fill={true}
+                            pos={'relative'}
+                            src={img.url}
+                            alt={img.alt}
+                            style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+                          />
+                        </Carousel.Slide>
+                      ),
+                    )
+                  ) : (
+                    <div>No images available for this project</div>
+                  )}
+                </Carousel>
               </Modal>
             </>
           ) : (
