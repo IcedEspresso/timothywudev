@@ -52,7 +52,7 @@ export default function Page() {
           <Title order={5} mt={{ base: '1rem', sm: 0 }}>
             View my{' '}
             <Anchor href="/resume.pdf" target="_blank" fw={700} style={{ fontSize: 'revert' }}>
-              resume <TiDocumentText />
+              resume <TiDocumentText style={{ marginBottom: '-2px' }} />
             </Anchor>
           </Title>
         </Container>
@@ -107,20 +107,21 @@ export default function Page() {
           </Stack>
           <Group className={classes.aboutText} maw={800} mx={'auto'}>
             <Text>
-              I&apos;m a developer who loves programming—the challenge, the puzzle, and especially
-              the satisfaction of bringing all the pieces together into a result that everyone is
-              happy with. As a Front-End Developer foremost, I have transformed various designs,
-              ideas, and even raw concepts into functional and responsive user-friendly interfaces.
-              On occasion, I will take on the Back-End role and responsibilities. I have experience
-              and knowledge in setting up CRMs, working with APIs, setting up forms, site
+              I&apos;m a developer passionate about programming—the challenge, the puzzle, and
+              especially the satisfaction of bringing all the pieces together into a result that
+              everyone is happy with. As a Front-End Developer foremost, I have transformed various
+              designs, ideas, and even raw concepts into functional and responsive user-friendly
+              interfaces. On occasion, I will take on the Back-End role and responsibilities. I have
+              experience and knowledge in setting up CRMs, working with APIs, setting up forms, site
               deployment, and site hosting. I may not know everything, but I will certainly figure
               it out!
             </Text>
             <Text>
-              I&apos;m highly enthusiastic about technology and do my best to follow advancements.
-              This drives me to continuously learn new computer-related skills, whether it&apos;s
-              picking up another programming language or diving into yet another JavaScript
-              framework or library.
+              I have always been highly enthusiastic about technology and do my best to follow
+              advancements. This drives me to continuously learn new computer-related skills,
+              whether it&apos;s picking up another programming language or diving into yet another
+              JavaScript framework or library. Occasionally, I&apos;ll even try my hand at learning
+              something that requires more than just lines of code, like 3D modeling.
             </Text>
             <Text>
               In my free time, I like to explore other avenues of creativity. Recently, my
