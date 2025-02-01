@@ -24,7 +24,7 @@ export default function Footer() {
               as possible!
             </Text>
             <Text maw={'350px'} mb={'lg'}>
-              If you prefer you may find message me or find my email on the following services:
+              If you prefer you may message me or find my email on the following services:
             </Text>
             <Anchor
               href="https://www.linkedin.com/in/timothywudev/"
